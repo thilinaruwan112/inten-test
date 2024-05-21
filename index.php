@@ -18,9 +18,15 @@ include './include/functions.php';
 
 <body>
     <div class="container p-3">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="border-bottom">User Information</h3>
+            </div>
+        </div>
         <div class="text-end">
             <button class="btn btn-primary" onclick="AddNewUser()">+ Add New</button>
         </div>
+
 
         <!-- Data Table -->
         <div id="data-table"></div>
