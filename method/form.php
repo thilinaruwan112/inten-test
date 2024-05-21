@@ -1,4 +1,5 @@
 <?php
+include '../include/functions.php';
 $updateKey = $_POST['updateKey'];
 $firstName = $lastName = $email = '';
 if ($updateKey != 0) {
@@ -12,8 +13,22 @@ if ($updateKey != 0) {
 ?>
 
 <form action="" id="data-form">
-    <input type="text" name="first_name" id="first_name" placeholder="Enter First Name" value="<?= $firstName ?>" required>
-    <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name" value="<?= $lastName ?>" required>
-    <input type="email" name="email" id="email" placeholder="Enter Email" value="<?= $email ?>" required>
-    <button type="button" onclick="SaveData('<?= $updateKey ?>')">Save Details</button>
+    <div class="row g-2">
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Enter First Name" value="<?= $firstName ?>" required>
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Enter Last Name" value="<?= $lastName ?>" required>
+        </div>
+        <div class="col-12">
+            <input class="form-control" type="email" name="email" id="email" placeholder="Enter Email" value="<?= $email ?>" required>
+        </div>
+        <div class="col-12 text-end">
+            <button class="btn btn-light" type="button" onclick="CloseForm()">Close</button>
+            <button class="btn btn-dark" type="button" onclick="SaveData('<?= $updateKey ?>')">Save Details</button>
+        </div>
+    </div>
+
+
+
 </form>

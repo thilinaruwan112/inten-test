@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    GetDataTable()
+})
+
 function SaveData(updateKey = 0) {
     var form = document.getElementById('data-form')
 
@@ -16,11 +20,12 @@ function SaveData(updateKey = 0) {
                     var response = JSON.parse(data)
                     if (response.status === 'success') {
                         var result = response.message
+                        GetDataTable()
                     } else {
                         var result = response.message
                     }
-                    alert(result)
-                    document.getElementById('form-box').style.display = 'none';
+                    console.log(result)
+                    CloseForm()
                 }
             })
         }
@@ -48,4 +53,45 @@ function AddNewUser(updateKey = 0) {
         })
     }
     fetch_data()
+}
+
+function GetDataTable() {
+
+    function fetch_data() {
+        $.ajax({
+            url: 'method/data-table.php',
+            method: 'POST',
+            success: function(data) {
+                $('#data-table').html(data)
+            }
+        })
+    }
+    fetch_data()
+}
+
+function DeleteData(updateKey) {
+    function fetch_data() {
+        $.ajax({
+            url: 'method/delete-data.php',
+            method: 'POST',
+            data: {
+                updateKey: updateKey
+            },
+            success: function(data) {
+                var response = JSON.parse(data)
+                if (response.status === 'success') {
+                    var result = response.message
+                    GetDataTable()
+                } else {
+                    var result = response.message
+                }
+                console.log(result)
+            }
+        })
+    }
+    fetch_data()
+}
+
+function CloseForm() {
+    document.getElementById('form-box').style.display = 'none';
 }
